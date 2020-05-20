@@ -1,3 +1,4 @@
+import java.util.*;
 /*
 *  CS211, Spring 2020
 *  Jae Choi, Alex Larsen, Sean Michael, Vinh Nguyen
@@ -6,15 +7,13 @@
 *  This abstract class contains methods which
 *  work for both array lists and linked lists.
 */
-
-import java.util.*;
-
 public abstract class AbstractList<E> implements List<E> {
    
-   public int size;        // current number of elements in the list
+   private int size;        // current number of elements in the list
 
-   public static final int DEFAULT_CAPACITY = 100;
+   private static final int DEFAULT_CAPACITY = 100;
 
+   
    // post: returns the current number of elements in the list
    public int size() {
       return size;
@@ -30,7 +29,7 @@ public abstract class AbstractList<E> implements List<E> {
       if (size == 0) {
          return "[]";
       } else {
-         Iterator i = this.iterator();
+         Iterator<E> i = this.iterator();
          String result = "[" + i.next();
          while(i.hasNext()) {
             result+=", "+ i.next();
@@ -44,7 +43,7 @@ public abstract class AbstractList<E> implements List<E> {
     //        value (-1 if not found)
     public int indexOf(E value) {
         int index = 0;
-        Iterator i = this.iterator();
+        Iterator<E> i = this.iterator();
         // ListNode<E> current = front.next;
         while (i.hasNext()) {
             if (i.next().equals(value)) {
@@ -103,4 +102,3 @@ public abstract class AbstractList<E> implements List<E> {
    // INCOMPLETE
    public abstract Iterator<E> iterator();
    
-}
