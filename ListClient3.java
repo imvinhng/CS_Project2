@@ -1,7 +1,7 @@
 /*
  * ==========================================
  * CS211, Spring 2020, 5/10
- * Vinh T. Nguyen , Jae Choi, Alexander Larsen, Sean Micheal
+ * Vinh Nguyen , Jae Choi, Alexander Larsen, Sean Micheal
  * Team Project #2 - Chap 16, page 1027 Programming Project #3
  * Create an abstract AbstractList superclass that is extended by 
  * both ArrayList and LinkedList, which factor out the common 
@@ -29,11 +29,12 @@ public class ListClient3 {
         list.add(42);
         list.add(18);
         list.add(27);
-        list.add(93);
+        list.add(2,93);
         System.out.println(list);
         list.remove(2);
         list.remove(0);
         System.out.println(list);
+        System.out.println(list.get(1));
         System.out.println(list.size());
         list.clear();
         System.out.println(list);
