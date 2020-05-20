@@ -9,9 +9,9 @@
 
 import java.util.*;
 
-public abstract class AbstractList<E> {
+public abstract class AbstractList<E> implements List<E> {
    
-   private int size;        // current number of elements in the list
+   public int size;        // current number of elements in the list
 
    public static final int DEFAULT_CAPACITY = 100;
 
@@ -67,7 +67,9 @@ public abstract class AbstractList<E> {
 
    // post: list is empty
    // INCOMPLETE
-   public abstract void clear();
+   public void clear(){
+      this.size = 0;
+   }
 
    // post: appends all values in the given list to the end of this list
    public void addAll(List<E> other) {

@@ -34,5 +34,7 @@ public class ListClient3 {
         list.remove(2);
         list.remove(0);
         System.out.println(list);
+        list.clear();
+        System.out.println(list);
     }
 }
