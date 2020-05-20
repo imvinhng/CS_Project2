@@ -1,7 +1,7 @@
 /*
  * ==========================================
  * CS211, Spring 2020, 5/10
- * Vinh T. Nguyen , Jae Choi, Alexander Larsen, Sean Micheal
+ * Vinh Nguyen , Jae Choi, Alexander Larsen, Sean Micheal
  * Team Project #2 - Chap 16, page 1027 Programming Project #3
  * Create an abstract AbstractList superclass that is extended by 
  * both ArrayList and LinkedList, which factor out the common 
@@ -43,12 +43,6 @@ public class ArrayList<E> extends AbstractList<E> {
         return elementData[index];
     }
 
-    // post: appends the given value to the end of the list
-    public void add(E value) {
-        ensureCapacity(size + 1);
-        elementData[size] = value;
-        size++;
-    }
 
     // pre : 0 <= index <= size() (throws IndexOutOfBoundsException if not)
     // post: inserts the given value at the given index, shifting subsequent
@@ -112,14 +106,6 @@ public class ArrayList<E> extends AbstractList<E> {
                 newCapacity = capacity;
             }
             elementData = Arrays.copyOf(elementData, newCapacity);
-        }
-    }
-
-    // post: throws an IndexOutOfBoundsException if the given index is
-    //       not a legal index of the current list
-    private void checkIndex(int index) {
-        if (index < 0 || index >= size) {
-            throw new IndexOutOfBoundsException("index: " + index);
         }
     }
 

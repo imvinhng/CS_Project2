@@ -54,6 +54,13 @@ public abstract class AbstractList<E> implements List<E> {
         }
         return -1;
     }
+        // post: throws an IndexOutOfBoundsException if the given index is
+    //       not a legal index of the current list
+    public void checkIndex(int index) {
+        if (index < 0 || index >= size()) {
+            throw new IndexOutOfBoundsException("index: " + index);
+        }
+    }
    
    // post: returns true if list is empty, false otherwise
    public boolean isEmpty() {
@@ -66,9 +73,10 @@ public abstract class AbstractList<E> implements List<E> {
       return indexOf(value) >= 0;
    }
 
-   // post: appends the given value to the end of the list
-   // INCOMPLETE
-   public abstract void add(E value);
+    // post: appends the given value to the end of the list
+    public void add(E value) {
+        add(size, value);
+    }
 
    // pre : 0 <= index <= size() (throws IndexOutOfBoundsException if not)
    // post: inserts the given value at the given index, shifting subsequent
@@ -88,9 +96,7 @@ public abstract class AbstractList<E> implements List<E> {
 
    // post: list is empty
    // INCOMPLETE
-   public void clear(){
-      this.size = 0;
-   }
+   public abstract void clear();
 
    // post: appends all values in the given list to the end of this list
    public void addAll(List<E> other) {
