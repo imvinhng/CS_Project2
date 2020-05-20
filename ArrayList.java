@@ -12,11 +12,13 @@
  * ==========================================
  */
 // Class ArrayList<E> can be used to store a list of values of type E.
+// Class ArrayList<E> can be used to store a list of values of type E.
 
 import java.util.*;
 
 public class ArrayList<E> extends AbstractList<E> {
     private E[] elementData; // list of values
+    private int size;        // current number of elements in the list
 
     public static final int DEFAULT_CAPACITY = 100;
 
@@ -36,11 +38,52 @@ public class ArrayList<E> extends AbstractList<E> {
         this(DEFAULT_CAPACITY);
     }
 
+    // post: returns the current number of elements in the list
+    public int size() {
+        return super.size();
+    }
+
     // pre : 0 <= index < size() (throws IndexOutOfBoundsException if not)
     // post: returns the value at the given index in the list
     public E get(int index) {
         checkIndex(index);
         return elementData[index];
+    }
+
+    // post: creates a comma-separated, bracketed version of the list
+    public String toString() {
+        if (size == 0) {
+            return "[]";
+        } else {
+            String result = "[" + elementData[0];
+            for (int i = 1; i < size; i++) {
+                result += ", " + elementData[i];
+            }
+            result += "]";
+            return result;
+        }
+    }
+
+    // post : returns the position of the first occurrence of the given
+    //        value (-1 if not found)
+    public int indexOf(E value) {
+        for (int i = 0; i < size; i++) {
+            if (elementData[i].equals(value)) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    // post: returns true if list is empty, false otherwise
+    public boolean isEmpty() {
+    	return super.isEmpty();
+    }
+
+    // post: returns true if the given value is contained in the list,
+    //       false otherwise
+    public boolean contains(E value) {
+        return super.contains(value);
     }
 
     // post: appends the given value to the end of the list
