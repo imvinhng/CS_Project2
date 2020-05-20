@@ -26,13 +26,34 @@ public abstract class AbstractList<E> implements List<E> {
    public abstract E get(int index);
 
    // post: creates a comma-separated, bracketed version of the list
-   // INCOMPLETE
-   public abstract String toString();
+   public String toString() {
+      if (size == 0) {
+         return "[]";
+      } else {
+         Iterator i = this.iterator();
+         String result = "[" + i.next();
+         while(i.hasNext()) {
+            result+=", "+ i.next();
+         }
+         result += "]";
+         return result;
+      }
+   }
 
-   // post : returns the position of the first occurrence of the given
-   //        value (-1 if not found)
-   // INCOMPLETE
-   public abstract int indexOf(E value);
+    // post : returns the position of the first occurrence of the given
+    //        value (-1 if not found)
+    public int indexOf(E value) {
+        int index = 0;
+        Iterator i = this.iterator();
+        // ListNode<E> current = front.next;
+        while (i.hasNext()) {
+            if (i.next().equals(value)) {
+                return index;
+            }
+            index++;
+        }
+        return -1;
+    }
    
    // post: returns true if list is empty, false otherwise
    public boolean isEmpty() {
