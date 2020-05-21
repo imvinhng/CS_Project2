@@ -21,7 +21,7 @@ public class LinkedList<E> extends AbstractList<E> {
     public LinkedList() {
         front = new ListNode<E>(null);
         back = new ListNode<E>(null);
-        clear();
+        front.next = back;
     }
 
     // pre : 0 <= index < size() (throws IndexOutOfBoundsException if not)
@@ -116,7 +116,7 @@ public class LinkedList<E> extends AbstractList<E> {
         }
     }
 
-    protected class LinkedIterator implements Iterator<E> {
+    private class LinkedIterator implements Iterator<E> {
         private ListNode<E> current;  // location of next value to return
         private boolean removeOK;  // whether it's okay to remove now
 
