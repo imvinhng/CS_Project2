@@ -18,20 +18,26 @@ public abstract class AbstractList<E> implements List<E> {
       return size;
    }
    
-   // pre : 0 <= index < size() (throws IndexOutOfBoundsException if not)
-   // post: returns the value at the given index in the list
-   // INCOMPLETE
-   public abstract E get(int index);
+    // pre : 0 <= index < size() (throws IndexOutOfBoundsException if not)
+    // post: returns the value at the given index in the list
+    public E get(int index) {
+        checkIndex(index);
+        Iterator<E> itr = this.iterator();
+        for (int i=0; i< index ; i++) {
+            itr.next();
+        }
+        return (E) itr.next();
+    }
 
    // post: creates a comma-separated, bracketed version of the list
    public String toString() {
       if (size == 0) {
          return "[]";
       } else {
-         Iterator i = this.iterator();
-         String result = "[" + i.next();
-         while(i.hasNext()) {
-            result+=", "+ i.next();
+         Iterator itr = this.iterator();
+         String result = "[" + itr.next();
+         while(itr.hasNext()) {
+            result+=", "+ itr.next();
          }
          result += "]";
          return result;
@@ -42,10 +48,10 @@ public abstract class AbstractList<E> implements List<E> {
     //        value (-1 if not found)
     public int indexOf(E value) {
         int index = 0;
-        Iterator i = this.iterator();
+        Iterator itr = this.iterator();
         // ListNode<E> current = front.next;
-        while (i.hasNext()) {
-            if (i.next().equals(value)) {
+        while (itr.hasNext()) {
+            if (itr.next().equals(value)) {
                 return index;
             }
             index++;
@@ -85,7 +91,7 @@ public abstract class AbstractList<E> implements List<E> {
    // pre : 0 <= index < size() (throws IndexOutOfBoundsException if not)
    // post: removes value at the given index, shifting subsequent values left
    public void remove(int index) {
-	   checkIndex(index);
+      checkIndex(index);
 	   Iterator<E> itr = this.iterator();
 	   while (index >= 0) {
 		   itr.next();
@@ -97,9 +103,7 @@ public abstract class AbstractList<E> implements List<E> {
    // pre : 0 <= index < size() (throws IndexOutOfBoundsException if not)
    // post: replaces the value at the given index with the given value
    // INCOMPLETE
-   public void set(int index, E value) {
-	   checkIndex(index);
-   }
+   public abstract void set(int index, E value);
    
    // post: list is empty
    public void clear(){
