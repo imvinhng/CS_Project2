@@ -21,7 +21,14 @@ public abstract class AbstractList<E> implements List<E> {
    // pre : 0 <= index < size() (throws IndexOutOfBoundsException if not)
    // post: returns the value at the given index in the list
    // INCOMPLETE
-   public abstract E get(int index);
+   public E get(int index) {
+	   checkIndex(index);
+	   Iterator<E> x = this.iterator();
+	   for (int i = 0; i < index; i++) {
+		   x.next();
+	}
+	   return x.next();
+   }
 
    // post: creates a comma-separated, bracketed version of the list
    public String toString() {
