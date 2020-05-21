@@ -1,7 +1,11 @@
 /*
  * ==========================================
  * CS211, Spring 2020, 5/10
+<<<<<<< HEAD
  * Vinh T. Nguyen , Jae Choi, Alexander Larsen, Sean Michael
+=======
+ * Vinh Nguyen , Jae Choi, Alexander Larsen, Sean Micheal
+>>>>>>> 9c47a47e5a727a8402c527077baf45bc646be87c
  * Team Project #2 - Chap 16, page 1027 Programming Project #3
  * Generic interface for a List of E objects.
  * Change this interface into an abstract class

@@ -1,7 +1,11 @@
 /*
  * ==========================================
  * CS211, Spring 2020, 5/10
+<<<<<<< HEAD
  * Vinh T. Nguyen , Jae Choi, Alexander Larsen, Sean Michael
+=======
+ * Vinh Nguyen , Jae Choi, Alexander Larsen, Sean Micheal
+>>>>>>> 9c47a47e5a727a8402c527077baf45bc646be87c
  * Team Project #2 - Chap 16, page 1027 Programming Project #3
  * Class LinkedList<E> can be used to store a list of values of type E.
  * ==========================================
@@ -26,11 +30,6 @@ public class LinkedList<E> extends AbstractList<E> {
         checkIndex(index);
         ListNode<E> current = nodeAt(index);
         return current.data;
-    }
-
-    // post: appends the given value to the end of the list
-    public void add(E value) {
-        add(size, value);
     }
 
     // pre: 0 <= index <= size() (throws IndexOutOfBoundsException if not)
@@ -99,8 +98,6 @@ public class LinkedList<E> extends AbstractList<E> {
 
     // post: throws an IndexOutOfBoundsException if the given index is
     //       not a legal index of the current list
-    
-
     private static class ListNode<E> {
         public E data;         // data stored in this node
         public ListNode<E> next;  // link to next node in the list

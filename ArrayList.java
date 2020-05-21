@@ -1,7 +1,11 @@
 /*
  * ==========================================
  * CS211, Spring 2020, 5/10
+<<<<<<< HEAD
  * Vinh T. Nguyen , Jae Choi, Alexander Larsen, Sean Michael
+=======
+ * Vinh Nguyen , Jae Choi, Alexander Larsen, Sean Micheal
+>>>>>>> 9c47a47e5a727a8402c527077baf45bc646be87c
  * Team Project #2 - Chap 16, page 1027 Programming Project #3
  * Class ArrayList<E> can be used to store a list of values of type E.
  * ==========================================
@@ -37,12 +41,6 @@ public class ArrayList<E> extends AbstractList<E> {
         return elementData[index];
     }
 
-    // post: appends the given value to the end of the list
-    public void add(E value) {
-        ensureCapacity(size + 1);
-        elementData[size] = value;
-        size++;
-    }
 
     // pre : 0 <= index <= size() (throws IndexOutOfBoundsException if not)
     // post: inserts the given value at the given index, shifting subsequent
@@ -92,7 +90,7 @@ public class ArrayList<E> extends AbstractList<E> {
 
     // post: throws an IndexOutOfBoundsException if the given index is
     //       not a legal index of the current list
-    protected class ArrayListIterator implements Iterator<E> {
+    private class ArrayListIterator implements Iterator<E> {
         private int position;           // current position within the list
         private boolean removeOK;       // whether it's okay to remove now
 
