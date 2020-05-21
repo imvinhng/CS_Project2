@@ -18,10 +18,16 @@ public abstract class AbstractList<E> implements List<E> {
       return size;
    }
    
-   // pre : 0 <= index < size() (throws IndexOutOfBoundsException if not)
-   // post: returns the value at the given index in the list
-   // INCOMPLETE
-   public abstract E get(int index);
+    // pre : 0 <= index < size() (throws IndexOutOfBoundsException if not)
+    // post: returns the value at the given index in the list
+    public E get(int index) {
+        checkIndex(index);
+        Iterator itr = this.iterator();
+        for (int i=0; i< index ; i++) {
+            itr.next();
+        }
+        return (E) itr.next();
+    }
 
    // post: creates a comma-separated, bracketed version of the list
    public String toString() {
@@ -97,11 +103,9 @@ public abstract class AbstractList<E> implements List<E> {
    // pre : 0 <= index < size() (throws IndexOutOfBoundsException if not)
    // post: replaces the value at the given index with the given value
    // INCOMPLETE
-   public void set(int index, E value) {
-	   checkIndex(index);
-   }
+   public abstract void set(int index, E value);
+   
    // post: list is empty
-   // INCOMPLETE
    public void clear(){
 	   Iterator<E> itr = this.iterator();
 	   while (itr.hasNext()) {
