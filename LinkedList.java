@@ -1,17 +1,11 @@
 /*
  * ==========================================
  * CS211, Spring 2020, 5/10
- * Vinh T. Nguyen , Jae Choi, Alexander Larsen, Sean Micheal
+ * Vinh T. Nguyen , Jae Choi, Alexander Larsen, Sean Michael
  * Team Project #2 - Chap 16, page 1027 Programming Project #3
- * Create an abstract AbstractList superclass that is extended by 
- * both ArrayList and LinkedList, which factor out the common 
- * methods/functionality of the two classes
- * 
- * 
- * 
+ * Class LinkedList<E> can be used to store a list of values of type E.
  * ==========================================
  */
-// Class LinkedList<E> can be used to store a list of values of type E.
 
 import java.util.*;
 
@@ -78,13 +72,6 @@ public class LinkedList<E> extends AbstractList<E> {
         current.data = value;
     }
 
-    // post: list is empty
-    public void clear() {
-        front.next = back;
-        back.prev = front;
-        size = 0;
-    }
-
     // post: returns an iterator for this list
     public Iterator<E> iterator() {
         return new LinkedIterator();
@@ -112,11 +99,7 @@ public class LinkedList<E> extends AbstractList<E> {
 
     // post: throws an IndexOutOfBoundsException if the given index is
     //       not a legal index of the current list
-    private void checkIndex(int index) {
-        if (index < 0 || index >= size()) {
-            throw new IndexOutOfBoundsException("index: " + index);
-        }
-    }
+    
 
     private static class ListNode<E> {
         public E data;         // data stored in this node
@@ -136,7 +119,7 @@ public class LinkedList<E> extends AbstractList<E> {
         }
     }
 
-    private class LinkedIterator implements Iterator<E> {
+    protected class LinkedIterator implements Iterator<E> {
         private ListNode<E> current;  // location of next value to return
         private boolean removeOK;  // whether it's okay to remove now
 

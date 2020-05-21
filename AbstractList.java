@@ -13,8 +13,6 @@ public abstract class AbstractList<E> implements List<E> {
    
    public int size;        // current number of elements in the list
 
-   public static final int DEFAULT_CAPACITY = 100;
-
    // post: returns the current number of elements in the list
    public int size() {
       return size;
@@ -79,17 +77,35 @@ public abstract class AbstractList<E> implements List<E> {
    // pre : 0 <= index < size() (throws IndexOutOfBoundsException if not)
    // post: removes value at the given index, shifting subsequent values left
    // INCOMPLETE
-   public abstract void remove(int index);
+   public void remove(int index) {
+	   Iterator<E> itr = this.iterator();
+	   while (itr.hasNext() && index >= 0) {
+		   itr.next();
+		   index--;
+	   }
+	   itr.remove();
+   }
 
    // pre : 0 <= index < size() (throws IndexOutOfBoundsException if not)
    // post: replaces the value at the given index with the given value
    // INCOMPLETE
-   public abstract void set(int index, E value);
+   public void set(int index, E value) {
+	   checkIndex(index);
+   }
+   protected void checkIndex(int index) {
+       if (index < 0 || index >= size()) {
+           throw new IndexOutOfBoundsException("index: " + index);
+       }
+   }
 
    // post: list is empty
    // INCOMPLETE
    public void clear(){
-      this.size = 0;
+	   Iterator<E> itr = this.iterator();
+	   while (itr.hasNext()) {
+		   itr.next();
+		   itr.remove();
+	   }
    }
 
    // post: appends all values in the given list to the end of this list
@@ -102,5 +118,5 @@ public abstract class AbstractList<E> implements List<E> {
    // post: returns an iterator for this list
    // INCOMPLETE
    public abstract Iterator<E> iterator();
-   
+   	  
 }

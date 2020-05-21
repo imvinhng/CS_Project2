@@ -1,9 +1,9 @@
 /*
  * ==========================================
  * CS211, Spring 2020, 5/10
- * Vinh T. Nguyen , Jae Choi, Alexander Larsen, Sean Micheal
+ * Vinh T. Nguyen , Jae Choi, Alexander Larsen, Sean Michael
  * Team Project #2 - Chap 16, page 1027 Programming Project #3
- * Create an abstract AbstractList superclass that is extended by 
+ * Tests an abstract AbstractList superclass that is extended by 
  * both ArrayList and LinkedList, which factor out the common 
  * methods/functionality of the two classes
  * 
@@ -23,6 +23,7 @@ public class ListClient3 {
 
         LinkedList<Integer> list2 = new LinkedList<Integer>();
         processList(list2);
+        list2.clear();
     }
 
     public static void processList(List list) {
