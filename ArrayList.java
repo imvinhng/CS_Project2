@@ -34,6 +34,14 @@ public class ArrayList<E> extends AbstractList<E> {
         this(DEFAULT_CAPACITY);
     }
 
+    // pre : 0 <= index < size() (throws IndexOutOfBoundsException if not)
+    // post: returns the value at the given index in the list
+    public E get(int index) {
+        checkIndex(index);
+        return elementData[index];
+    }
+
+
     // pre : 0 <= index <= size() (throws IndexOutOfBoundsException if not)
     // post: inserts the given value at the given index, shifting subsequent
     //       values right

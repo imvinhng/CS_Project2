@@ -27,10 +27,10 @@ public class ListClient3 {
 
         LinkedList<Integer> list2 = new LinkedList<Integer>();
         processList(list2);
-        list2.clear();
+        
     }
 
-    public static void processList(List list) {
+    public static <E> void processList(List list) {
         list.add(42);
         list.add(18);
         list.add(27);
