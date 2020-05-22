@@ -100,10 +100,15 @@ public abstract class AbstractList<E> implements List<E> {
 	   itr.remove();
    }
 
-   // pre : 0 <= index < size() (throws IndexOutOfBoundsException if not)
-   // post: replaces the value at the given index with the given value
-   // INCOMPLETE
-   public abstract void set(int index, E value);
+
+    // pre : 0 <= index < size() (throws IndexOutOfBoundsException if not)
+    // post: replaces the value at the given index with the given value
+    public void set(int index, E value) {
+        checkIndex(index);
+        add(index, value);
+        remove(index+1);
+    }
+
    
    // post: list is empty
    public void clear(){

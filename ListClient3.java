@@ -36,6 +36,7 @@ public class ListClient3 {
         list.add(27);
         list.add(2,93);
         System.out.println(list);
+        list.set(1,100);
         list.remove(2);
         list.remove(0);
         System.out.println(list);
