@@ -1,11 +1,7 @@
 /*
  * ==========================================
  * CS211, Spring 2020, 5/10
-<<<<<<< HEAD
  * Vinh T. Nguyen , Jae Choi, Alexander Larsen, Sean Michael
-=======
- * Vinh Nguyen , Jae Choi, Alexander Larsen, Sean Micheal
->>>>>>> 9c47a47e5a727a8402c527077baf45bc646be87c
  * Team Project #2 - Chap 16, page 1027 Programming Project #3
  * Class ArrayList<E> can be used to store a list of values of type E.
  * ==========================================
@@ -33,7 +29,15 @@ public class ArrayList<E> extends AbstractList<E> {
     public ArrayList() {
         this(DEFAULT_CAPACITY);
     }
-    
+
+    // pre : 0 <= index < size() (throws IndexOutOfBoundsException if not)
+    // post: returns the value at the given index in the list
+    public E get(int index) {
+        checkIndex(index);
+        return elementData[index];
+    }
+
+
     // pre : 0 <= index <= size() (throws IndexOutOfBoundsException if not)
     // post: inserts the given value at the given index, shifting subsequent
     //       values right
@@ -48,7 +52,21 @@ public class ArrayList<E> extends AbstractList<E> {
         elementData[index] = value;
         size++;
     }
-    
+
+    // pre : 0 <= index < size() (throws IndexOutOfBoundsException if not)
+    // post: replaces the value at the given index with the given value
+    public void set(int index, E value) {
+        checkIndex(index);
+        elementData[index] = value;
+    }
+
+    // post: appends all values in the given list to the end of this list
+    public void addAll(List<E> other) {
+        for (E value: other) {
+            add(value);
+        }
+    }
+
     // post: returns an iterator for this list
     public Iterator<E> iterator() {
         return new ArrayListIterator();
@@ -110,5 +128,6 @@ public class ArrayList<E> extends AbstractList<E> {
             position--;
             removeOK = false;
         }
+       
     }
 }
