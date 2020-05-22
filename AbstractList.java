@@ -20,7 +20,6 @@ public abstract class AbstractList<E> implements List<E> {
    
    // pre : 0 <= index < size() (throws IndexOutOfBoundsException if not)
    // post: returns the value at the given index in the list
-   // INCOMPLETE
    public E get(int index) {
        checkIndex(index);
        Iterator<E> itr = this.iterator();
