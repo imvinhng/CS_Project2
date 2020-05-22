@@ -17,7 +17,7 @@ public class AbstractListClient {
       ArrayList<Integer> list1 = new ArrayList<Integer>();
       LinkedList<Integer> list2 = new LinkedList<Integer>();
       Random rand = new Random();
-      int index = rand.nextInt(10);
+      int index = rand.nextInt(5);
       int value = rand.nextInt(10);
       
       processList(list1);
@@ -48,34 +48,34 @@ public class AbstractListClient {
       System.out.println("Linked list is empty: " + list2.isEmpty());
       System.out.println();
       // add test
-      index = rand.nextInt(10);
+      index = rand.nextInt(5);
       value = rand.nextInt(10);
       System.out.println("Adding " + value + " to position " + index + " in array list: ");
       list1.add(index, value);
       System.out.println(list1.toString());
-      index = rand.nextInt(10);
+      index = rand.nextInt(5);
       value = rand.nextInt(10);
       System.out.println("Adding " + value + " to position " + index + " in linked list: ");
       list2.add(index, value);
       System.out.println(list2.toString());
       System.out.println();
       // remove test
-      index = rand.nextInt(10);
+      index = rand.nextInt(5);
       System.out.println("Removing from position " + index + " in array list: ");
       list1.remove(index);
       System.out.println(list1.toString());
-      index = rand.nextInt(10);
+      index = rand.nextInt(5);
       System.out.println("Removing from position " + index + " in linked list: ");
-      list2.add(index);
+      list2.remove(index);
       System.out.println(list2.toString());
       System.out.println();
       // set test
-      index = rand.nextInt(10);
+      index = rand.nextInt(5);
       value = rand.nextInt(10);
       System.out.println("Setting value in position " + index + " to " + value + " in array list: ");
       list1.set(index, value);
       System.out.println(list1.toString());
-      index = rand.nextInt(10);
+      index = rand.nextInt(5);
       value = rand.nextInt(10);
       System.out.println("Setting value in position " + index + " to " + value + " in linked list: ");
       list2.set(index, value);
@@ -105,7 +105,7 @@ public class AbstractListClient {
       
       // add test
       Random rand = new Random();
-      for (int i = 0; i < 10; i++) {
+      for (int i = 0; i < 5; i++) {
          list.add(rand.nextInt(10)); // random list test
          //list.add(i);              // constant list test
       }
