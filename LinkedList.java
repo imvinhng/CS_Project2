@@ -23,12 +23,8 @@ public class LinkedList<E> extends AbstractList<E> {
         back = new ListNode<E>(null);
         front.next = back;
     }
-
-    // pre: 0 <= index <= size() (throws IndexOutOfBoundsException if not)
-    // post: inserts the given value at the given index, shifting subsequent
-    //       values right
     public void add(int index, E value) {
-        if (index < 0 || index > size) {
+    	if (index < 0 || index > size) {
             throw new IndexOutOfBoundsException("index: " + index);
         }
         ListNode<E> current = nodeAt(index - 1);
@@ -37,24 +33,6 @@ public class LinkedList<E> extends AbstractList<E> {
         newNode.next.prev = newNode;
         size++;
     }
-
-    // post: appends all values in the given list to the end of this list
-    public void addAll(List<E> other) {
-        for (E value: other) {
-            add(value);
-        }
-    }
-
-    // pre : 0 <= index < size() (throws IndexOutOfBoundsException if not)
-    // post: removes value at the given index, shifting subsequent values left
-    public void remove(int index) {
-        checkIndex(index);
-        ListNode<E> current = nodeAt(index - 1);
-        current.next = current.next.next;
-        current.next.prev = current;
-        size--;
-    }
-
     // post: returns an iterator for this list
     public Iterator<E> iterator() {
         return new LinkedIterator();

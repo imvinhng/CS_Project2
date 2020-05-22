@@ -33,8 +33,7 @@ public class ArrayList<E> extends AbstractList<E> {
     public ArrayList() {
         this(DEFAULT_CAPACITY);
     }
-
-
+    
     // pre : 0 <= index <= size() (throws IndexOutOfBoundsException if not)
     // post: inserts the given value at the given index, shifting subsequent
     //       values right
@@ -49,14 +48,7 @@ public class ArrayList<E> extends AbstractList<E> {
         elementData[index] = value;
         size++;
     }
-
-    // post: appends all values in the given list to the end of this list
-    public void addAll(List<E> other) {
-        for (E value: other) {
-            add(value);
-        }
-    }
-
+    
     // post: returns an iterator for this list
     public Iterator<E> iterator() {
         return new ArrayListIterator();
@@ -118,6 +110,5 @@ public class ArrayList<E> extends AbstractList<E> {
             position--;
             removeOK = false;
         }
-       
     }
 }
