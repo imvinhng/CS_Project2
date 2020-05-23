@@ -1,10 +1,8 @@
 /*
- * ==========================================
  * CS211, Spring 2020, 5/10
  * Vinh T. Nguyen , Jae Choi, Alexander Larsen, Sean Michael
  * Team Project #2 - Chap 16, page 1027 Programming Project #3
  * Class LinkedList<E> can be used to store a list of values of type E.
- * ==========================================
  */
 
 import java.util.*;
@@ -20,14 +18,6 @@ public class LinkedList<E> extends AbstractList<E> {
         front.next = back;
     }
 
-    // pre : 0 <= index < size() (throws IndexOutOfBoundsException if not)
-    // post: returns the value at the given index in the list
-    public E get(int index) {
-        checkIndex(index);
-        ListNode<E> current = nodeAt(index);
-        return current.data;
-    }
-
     // pre: 0 <= index <= size() (throws IndexOutOfBoundsException if not)
     // post: inserts the given value at the given index, shifting subsequent
     //       values right
@@ -40,31 +30,6 @@ public class LinkedList<E> extends AbstractList<E> {
         current.next = newNode;
         newNode.next.prev = newNode;
         size++;
-    }
-
-    // post: appends all values in the given list to the end of this list
-    /*public void addAll(List<E> other) {
-        for (E value: other) {
-            add(value);
-        }
-    }*/
-
-    // pre : 0 <= index < size() (throws IndexOutOfBoundsException if not)
-    // post: removes value at the given index, shifting subsequent values left
-    public void remove(int index) {
-        checkIndex(index);
-        ListNode<E> current = nodeAt(index - 1);
-        current.next = current.next.next;
-        current.next.prev = current;
-        size--;
-    }
-
-    // pre : 0 <= index < size() (throws IndexOutOfBoundsException if not)
-    // post: replaces the value at the given index with the given value
-    public void set(int index, E value) {
-        checkIndex(index);
-        ListNode<E> current = nodeAt(index);
-        current.data = value;
     }
 
     // post: returns an iterator for this list
