@@ -13,8 +13,6 @@ public abstract class AbstractList<E> implements List<E> {
    
    public int size;        // current number of elements in the list
 
-   public static final int DEFAULT_CAPACITY = 100;
-
    // post: returns the current number of elements in the list
    public int size() {
       return size;
@@ -22,30 +20,46 @@ public abstract class AbstractList<E> implements List<E> {
    
    // pre : 0 <= index < size() (throws IndexOutOfBoundsException if not)
    // post: returns the value at the given index in the list
-   // INCOMPLETE
-   public abstract E get(int index);
+   public E get(int index) {
+       checkIndex(index);
+       Iterator<E> itr = this.iterator();
+       for (int i=0; i< index ; i++) {
+           itr.next();
+       }
+       return itr.next();
+   }
 
    // post: creates a comma-separated, bracketed version of the list
    public String toString() {
       if (size == 0) {
          return "[]";
       } else {
-         Iterator i = this.iterator();
-         String result = "[" + i.next();
-         while(i.hasNext()) {
-            result+=", "+ i.next();
+         Iterator<E> itr = this.iterator();
+         String result = "[" + itr.next();
+         while(itr.hasNext()) {
+            result+=", "+ itr.next();
          }
          result += "]";
          return result;
       }
+   }
+   
+   //returns an iterator positioned at the given index
+   private Iterator<E> iteratorToIndex(int index) {
+	   checkIndex(index);
+	   Iterator<E> itr = this.iterator();
+	   while (index >= 0) {
+		   itr.next();
+		   index--;
+	   }
+	   return itr;
    }
 
     // post : returns the position of the first occurrence of the given
     //        value (-1 if not found)
     public int indexOf(E value) {
         int index = 0;
-        Iterator i = this.iterator();
-        // ListNode<E> current = front.next;
+        Iterator<E> i = this.iterator();
         while (i.hasNext()) {
             if (i.next().equals(value)) {
                 return index;
@@ -81,22 +95,30 @@ public abstract class AbstractList<E> implements List<E> {
    // pre : 0 <= index <= size() (throws IndexOutOfBoundsException if not)
    // post: inserts the given value at the given index, shifting subsequent
    //       values right
-   // INCOMPLETE
    public abstract void add(int index, E value);
 
    // pre : 0 <= index < size() (throws IndexOutOfBoundsException if not)
    // post: removes value at the given index, shifting subsequent values left
-   // INCOMPLETE
-   public abstract void remove(int index);
+   public void remove(int index) {
+	   iteratorToIndex(index).remove();
+   }
 
    // pre : 0 <= index < size() (throws IndexOutOfBoundsException if not)
    // post: replaces the value at the given index with the given value
-   // INCOMPLETE
-   public abstract void set(int index, E value);
-
+   public void set(int index, E value) {
+	   checkIndex(index);
+	   this.remove(index);
+	   this.add(index, value);
+   }
+   
    // post: list is empty
-   // INCOMPLETE
-   public abstract void clear();
+   public void clear(){
+	   Iterator<E> itr = this.iterator();
+	   while (itr.hasNext()) {
+		   itr.next();
+		   itr.remove();
+	   }
+   }
 
    // post: appends all values in the given list to the end of this list
    public void addAll(List<E> other) {
@@ -106,7 +128,5 @@ public abstract class AbstractList<E> implements List<E> {
    }
 
    // post: returns an iterator for this list
-   // INCOMPLETE
    public abstract Iterator<E> iterator();
-   
 }

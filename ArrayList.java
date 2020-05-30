@@ -1,17 +1,9 @@
 /*
- * ==========================================
  * CS211, Spring 2020, 5/10
- * Vinh Nguyen , Jae Choi, Alexander Larsen, Sean Micheal
+ * Vinh T. Nguyen , Jae Choi, Alexander Larsen, Sean Michael
  * Team Project #2 - Chap 16, page 1027 Programming Project #3
- * Create an abstract AbstractList superclass that is extended by 
- * both ArrayList and LinkedList, which factor out the common 
- * methods/functionality of the two classes
- * 
- * 
- * 
- * ==========================================
+ * Class ArrayList<E> can be used to store a list of values of type E.
  */
-// Class ArrayList<E> can be used to store a list of values of type E.
 
 import java.util.*;
 
@@ -36,13 +28,6 @@ public class ArrayList<E> extends AbstractList<E> {
         this(DEFAULT_CAPACITY);
     }
 
-    // pre : 0 <= index < size() (throws IndexOutOfBoundsException if not)
-    // post: returns the value at the given index in the list
-    public E get(int index) {
-        checkIndex(index);
-        return elementData[index];
-    }
-
 
     // pre : 0 <= index <= size() (throws IndexOutOfBoundsException if not)
     // post: inserts the given value at the given index, shifting subsequent
@@ -57,39 +42,6 @@ public class ArrayList<E> extends AbstractList<E> {
         }
         elementData[index] = value;
         size++;
-    }
-
-    // pre : 0 <= index < size() (throws IndexOutOfBoundsException if not)
-    // post: removes value at the given index, shifting subsequent values left
-    public void remove(int index) {
-        checkIndex(index);
-        for (int i = index; i < size - 1; i++) {
-            elementData[i] = elementData[i + 1];
-        }
-        elementData[size - 1] = null;
-        size--;
-    }
-
-    // pre : 0 <= index < size() (throws IndexOutOfBoundsException if not)
-    // post: replaces the value at the given index with the given value
-    public void set(int index, E value) {
-        checkIndex(index);
-        elementData[index] = value;
-    }
-
-    // post: list is empty
-    public void clear() {
-        for (int i = 0; i < size; i++) {
-            elementData[i] = null;
-        }
-        size = 0;
-    }
-
-    // post: appends all values in the given list to the end of this list
-    public void addAll(List<E> other) {
-        for (E value: other) {
-            add(value);
-        }
     }
 
     // post: returns an iterator for this list
@@ -109,6 +61,8 @@ public class ArrayList<E> extends AbstractList<E> {
         }
     }
 
+    // post: throws an IndexOutOfBoundsException if the given index is
+    //       not a legal index of the current list
     private class ArrayListIterator implements Iterator<E> {
         private int position;           // current position within the list
         private boolean removeOK;       // whether it's okay to remove now
@@ -143,9 +97,14 @@ public class ArrayList<E> extends AbstractList<E> {
             if (!removeOK) {
                 throw new IllegalStateException();
             }
-            ArrayList.this.remove(position - 1);
+            for (int i = position - 1; i < size - 1; i++) {
+                elementData[i] = elementData[i + 1];
+            }
+            elementData[size - 1] = null;
+            size--;
             position--;
             removeOK = false;
         }
+       
     }
 }

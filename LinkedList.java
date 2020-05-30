@@ -1,17 +1,9 @@
 /*
- * ==========================================
  * CS211, Spring 2020, 5/10
- * Vinh Nguyen , Jae Choi, Alexander Larsen, Sean Micheal
+ * Vinh T. Nguyen , Jae Choi, Alexander Larsen, Sean Michael
  * Team Project #2 - Chap 16, page 1027 Programming Project #3
- * Create an abstract AbstractList superclass that is extended by 
- * both ArrayList and LinkedList, which factor out the common 
- * methods/functionality of the two classes
- * 
- * 
- * 
- * ==========================================
+ * Class LinkedList<E> can be used to store a list of values of type E.
  */
-// Class LinkedList<E> can be used to store a list of values of type E.
 
 import java.util.*;
 
@@ -23,15 +15,7 @@ public class LinkedList<E> extends AbstractList<E> {
     public LinkedList() {
         front = new ListNode<E>(null);
         back = new ListNode<E>(null);
-        clear();
-    }
-
-    // pre : 0 <= index < size() (throws IndexOutOfBoundsException if not)
-    // post: returns the value at the given index in the list
-    public E get(int index) {
-        checkIndex(index);
-        ListNode<E> current = nodeAt(index);
-        return current.data;
+        front.next = back;
     }
 
     // pre: 0 <= index <= size() (throws IndexOutOfBoundsException if not)
@@ -46,38 +30,6 @@ public class LinkedList<E> extends AbstractList<E> {
         current.next = newNode;
         newNode.next.prev = newNode;
         size++;
-    }
-
-    // post: appends all values in the given list to the end of this list
-    public void addAll(List<E> other) {
-        for (E value: other) {
-            add(value);
-        }
-    }
-
-    // pre : 0 <= index < size() (throws IndexOutOfBoundsException if not)
-    // post: removes value at the given index, shifting subsequent values left
-    public void remove(int index) {
-        checkIndex(index);
-        ListNode<E> current = nodeAt(index - 1);
-        current.next = current.next.next;
-        current.next.prev = current;
-        size--;
-    }
-
-    // pre : 0 <= index < size() (throws IndexOutOfBoundsException if not)
-    // post: replaces the value at the given index with the given value
-    public void set(int index, E value) {
-        checkIndex(index);
-        ListNode<E> current = nodeAt(index);
-        current.data = value;
-    }
-
-    // post: list is empty
-    public void clear() {
-        front.next = back;
-        back.prev = front;
-        size = 0;
     }
 
     // post: returns an iterator for this list
@@ -105,7 +57,8 @@ public class LinkedList<E> extends AbstractList<E> {
         return current;
     }
 
-
+    // post: throws an IndexOutOfBoundsException if the given index is
+    //       not a legal index of the current list
     private static class ListNode<E> {
         public E data;         // data stored in this node
         public ListNode<E> next;  // link to next node in the list
